@@ -86,6 +86,41 @@ class myVector{
             size=0;
             // size changes to 0 but the capacity remains the same
         }
+        void insert(T val, int index)
+        {
+            int i;
+            if(index > size || index < 0){
+                throw out_of_range("Invalid Index!");
+            }
+            else{
+                if(size==capacity){
+                    capacity = 2*capacity;
+                T* newArr = new T[capacity];
+                for(i=0;i<size;i++)
+                    newArr[i] = arr[i];
+                delete[]arr;
+                arr = newArr;
+                }
+                for(i=size;i>index;i--){
+                    arr[i] = arr[i-1];
+                }
+                arr[i] = val;
+                size++;
+                }
+        }
+
+        void erase(int index)
+        {
+            if(index > size || index < 0){
+                throw out_of_range("Invalid Index!");
+            }
+            else{
+                for(int i= index;i<size;i++){
+                    arr[i] = arr[i+1];
+                }
+                size--;
+            }
+        }
 
         T at(int i)
         {
